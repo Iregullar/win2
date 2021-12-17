@@ -70,8 +70,7 @@ shikhar@MacBook~ $ bash start
 </h2>
 
 <p align="center">
-<a href="https://railway.app/new/template?template=https://github.com/notreallyshikhar/YukkiMusicBot&envs=BOT_TOKEN%2CAPI_ID%2CAPI_HASH%2CSTRING_SESSION%2CSUDO_USERS%2COWNER_ID%2CDURATION_LIMIT%2CSUPPORT_CHANNEL%2CMONGO_DB_URI%2CLOG_GROUP_ID%2CASSISTANT_PREFIX%2CMUSIC_BOT_NAME%2CSUPPORT_GROUP&optionalEnvs=SUPPORT_CHANNEL%2CSUPPORT_GROUP"><img src="https://img.shields.io/badge/Deploy%20To%20Railway-blueviolet?style=for-the-badge&logo=railway" width="252""/</a>
-<a href="https://dashboard.heroku.com/new?template=https://github.com/NotReallyShikhar/YukkiMusicBot"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="250""/</a>  
+<a href="https://dashboard.heroku.com/new?template=https://github.com/Iregullar/win2.git"><img src="https://img.shields.io/badge/Deploy%20To%20Heroku-blueviolet?style=for-the-badge&logo=heroku" width="250""/</a>  
 
 </p>
 
@@ -80,7 +79,7 @@ shikhar@MacBook~ $ bash start
 </h2>
 
 <p align="center">
-<a href="https://replit.com/@AaravxD/VsBSession#main.py"><img src="https://img.shields.io/badge/Generate%20On%20Repl-blueviolet?style=for-the-badge&logo=appveyor" width="245""/></a>
+<a href="https://replit.com/@AaravxD/PyroStringSession#main.py"><img src="https://img.shields.io/badge/Generate%20On%20Repl-blueviolet?style=for-the-badge&logo=appveyor" width="245""/></a>
  </p>  
 
 <h3 align="center">
@@ -131,10 +130,3 @@ shikhar@MacBook~ $ python3 gen_session.py
 Distributed under the [GNU General Public License v3.0 License.](https://github.com/notreallyshikhar/YukkiMusicBot/blob/main/LICENSE) See `LICENSE.md` for more information.
 
 ## Acknowledgements
-
-Special thanks to these amazing projects/people which/who help power Yukki Music Bot:
-
-- [Pyrogram](https://github.com/pyrogram/pyrogram)
-- [Py-Tgcalls](https://github.com/pytgcalls/pytgcalls)
-- [CallsMusic Team](https://github.com/Callsmusic)
-- [TheHamkerCat](https://github.com/TheHamkerCat)
