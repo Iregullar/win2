@@ -27,25 +27,25 @@ HELPABLE = {}
 
 async def initiate_bot():
     with console.status(
-        "[magenta] Winamp Müzik Botunu Açıyorum...",
+        "[magenta] Booting up The Yukki Music Bot...",
     ) as status:
-        console.print("┌ [red]MongoDB önbelleğini temizliyorum...")
+        console.print("┌ [red]Clearing MongoDB cache...")
         try:
             chats = await get_active_chats()
             for chat in chats:
                 chat_id = int(chat["chat_id"])
                 await remove_active_chat(chat_id)
         except Exception as e:
-            console.print("[red] Mongo DB temizlenirken hata oluştu.")
-        console.print("└ [green]MongoDB Başarıyla Temizlendi!\n\n")
-        ____ = await startup_send_new("Tüm Eklentileri İçe Aktarıyorum...")
+            console.print("[red] Error while clearing Mongo DB.")
+        console.print("└ [green]MongoDB Cleared Successfully!\n\n")
+        ____ = await startup_send_new("Importing All Plugins...")
         status.update(
-            status="[bold blue]Eklentiler için Tarama", spinner="earth"
+            status="[bold blue]Scanning for Plugins", spinner="earth"
         )
         await asyncio.sleep(1.7)
-        console.print("{} Eklentileri bulundu".format(len(ALL_MODULES)) + "\n")
+        console.print("Found {} Plugins".format(len(ALL_MODULES)) + "\n")
         status.update(
-            status="[bold red]Eklentileri içe Aktarma...",
+            status="[bold red]Importing Plugins...",
             spinner="bouncingBall",
             spinner_style="yellow",
         )
@@ -67,67 +67,62 @@ async def initiate_bot():
                         imported_module.__MODULE__.lower()
                     ] = imported_module
             console.print(
-                f">> [bold cyan]Başarıyla içe aktarıldı: [green]{all_module}.py"
+                f">> [bold cyan]Successfully imported: [green]{all_module}.py"
             )
             await asyncio.sleep(0.2)
         console.print("")
-        _____ = await startup_edit_last(____, "Sonuçlandırılıyor...")
+        _____ = await startup_edit_last(____, "Finalizing...")
         status.update(
-            status="[bold blue]İçe aktarma Tamamlandı!",
+            status="[bold blue]Importation Completed!",
         )
         await asyncio.sleep(2.4)
         await startup_delete_last(_____)
     console.print(
-        "[bold green]⚡Tebrikler!! Winamp Müzik Botu başarıyla başladı!⚡\n"
+        "[bold green]Congrats!! Yukki Music Bot has started successfully!\n"
     )
     try:
         await app.send_message(
             LOG_GROUP_ID,
-            "<b>⚡Tebrikler!! Müzik Botu başarıyla başladı!⚡</b>",
+            "<b>Congrats!! Music Bot has started successfully!</b>",
         )
     except Exception as e:
         print(
-            "Bot günlük Kanalına erişemedi. Botunuzu günlük kanalınıza eklediğinizden ve yönetici olarak tanıttığınızdan emin olun!"
+            "Bot has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
         )
-        console.print(f"\n[red]Durdurma Botu")
+        console.print(f"\n[red]Stopping Bot")
         return
     a = await app.get_chat_member(LOG_GROUP_ID, BOT_ID)
-    if a.status != "yönetici":
-        print("Logger Kanalında Botu Yönetici Olarak Tanıtın")
-        console.print(f"\n[red]Durdurma Botu")
+    if a.status != "administrator":
+        print("Promote Bot as Admin in Logger Channel")
+        console.print(f"\n[red]Stopping Bot")
         return
     try:
         await userbot.send_message(
             LOG_GROUP_ID,
-            "<b>Tebrikler!! Asistan başarıyla başladı!</b>",
+            "<b>Congrats!! Assistant has started successfully!</b>",
         )
     except Exception as e:
         print(
-            "Yardımcı Hesap günlük Kanalına erişemedi. Botunuzu günlük kanalınıza eklediğinizden ve yönetici olarak tanıttığınızdan emin olun!"
+            "Assistant Account has failed to access the log Channel. Make sure that you have added your bot to your log channel and promoted as admin!"
         )
-        console.print(f"\n[red]Durdurma Botu")
+        console.print(f"\n[red]Stopping Bot")
         return
     try:
-        await userbot.join_chat("WinampMuzikDestek")
+        await userbot.join_chat("OfficialYukki")
     except:
         pass
-    console.print(f"\n┌[red] Bot olarak başladı! {BOT_NAME}!")
+    console.print(f"\n┌[red] Bot Started as {BOT_NAME}!")
     console.print(f"├[green] ID :- {BOT_ID}!")
-    console.print(f"├[red] Asistan olarak başladı! {ASSNAME}!")
+    console.print(f"├[red] Assistant Started as {ASSNAME}!")
     console.print(f"└[green] ID :- {ASSID}!")
     await run()
-    console.print(f"\n[red]Durdurma Botu")
+    console.print(f"\n[red]Stopping Bot")
 
 
-home_text_pm = f"""⚡ Merhaba 🖤 [ ](https://www.burn-soft.ru/wp-content/uploads/2015/07/Programma-Winamp-1024x1024.jpg)
-
-⚡ Benim adım {BOT_NAME} Bot ⚡.
-
-💡 Bazı kullanışlı özelliklere sahip Telegram Sesli Sohbet Sesiyim.
-
-⚡ **Geliştiricim <3  [Pratheek](http://t.me/OrmanCocuklariylaMucadele)**
-
-💭 Tüm komutlarımı ile kullanılabilirsin: / """
+home_text_pm = f"""Hello ,
+My name is {BOT_NAME}.
+I'm Telegram Voice Chat Audio with some useful features.
+All commands can be used with: / """
 
 
 @app.on_message(filters.command("help") & filters.private)
@@ -142,7 +137,7 @@ async def start_command(_, message):
         name = (message.text.split(None, 1)[1]).lower()
         if name[0] == "s":
             sudoers = await get_sudoers()
-            text = "**__Yardımcı Kullanıcıları Bot Listesi:-__**\n\n"
+            text = "**__Sudo Users List of Bot:-__**\n\n"
             j = 0
             for count, user_id in enumerate(sudoers, 1):
                 try:
@@ -152,10 +147,10 @@ async def start_command(_, message):
                     )
                 except Exception:
                     continue
-                text += f"➤ {kullanıcı}\n"
+                text += f"➤ {user}\n"
                 j += 1
             if j == 0:
-                await message.reply_text("Yardım Kullanıcısı Yok")
+                await message.reply_text("No Sudo Users")
             else:
                 await message.reply_text(text)
         if name == "help":
@@ -167,8 +162,8 @@ async def start_command(_, message):
                 reply_markup=keyboard,
             )
         if name[0] == "i":
-            m = await message.reply_text("🔎 Bilgi Alınıyor!")
-            query = (str(name)).replace("bilgi_", "", 1)
+            m = await message.reply_text("🔎 Fetching Info!")
+            query = (str(name)).replace("info_", "", 1)
             query = f"https://www.youtube.com/watch?v={query}"
             results = VideosSearch(query, limit=1)
             for result in results.result()["result"]:
@@ -181,23 +176,23 @@ async def start_command(_, message):
                 link = result["link"]
                 published = result["publishedTime"]
             searched_text = f"""
-🔍__**Video Parça Bilgileri**__
-❇️**Başlık:** {title}
-⏳**Süreli:** {duration} Dakika
-👀**Görünümler:** `{views}`
-⏰**Yayın Saati:** {published}
-🎥**Kanal Adı:** {channel}
-📎**Kanal Linki:** [Visit From Here]({channellink})
-🔗**Video Linki:** [Link]({link})
-⚡️ __Arama {BOT_NAME} Tarafından Desteklenmektedir__"""
+🔍__**Video Track Information**__
+❇️**Title:** {title}
+⏳**Duration:** {duration} Mins
+👀**Views:** `{views}`
+⏰**Published Time:** {published}
+🎥**Channel Name:** {channel}
+📎**Channel Link:** [Visit From Here]({channellink})
+🔗**Video Link:** [Link]({link})
+⚡️ __Searched Powered By {BOT_NAME}t__"""
             key = InlineKeyboardMarkup(
                 [
                     [
                         InlineKeyboardButton(
-                            text="🎥 Youtube Videosunu İzle", url=f"{link}"
+                            text="🎥 Watch Youtube Video", url=f"{link}"
                         ),
                         InlineKeyboardButton(
-                            text="🔄 Kapat", callback_data="close"
+                            text="🔄 Close", callback_data="close"
                         ),
                     ],
                 ]
@@ -221,9 +216,9 @@ async def help_parser(name, keyboard=None):
     if not keyboard:
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return (
-        """⚡️ Merhaba {first_name}⚡️,
-Daha fazla bilgi için düğmelere tıklayın.
-Tüm komutlarım ile kullanabilirsin: /
+        """Hello {first_name},
+Click on the buttons for more information.
+All commands can be used with: /
 """.format(
             first_name=name
         ),
@@ -245,15 +240,15 @@ async def help_button(client, query):
     next_match = re.match(r"help_next\((.+?)\)", query.data)
     back_match = re.match(r"help_back", query.data)
     create_match = re.match(r"help_create", query.data)
-    top_text = f"""⚡️ Merhaba {query.from_user.first_name},
-Daha fazla bilgi için düğmelere tıklayın.
-Tüm komutlarım ile kullanabilirsin: /
+    top_text = f"""Hello {query.from_user.first_name},
+Click on the buttons for more information.
+All commands can be used with: /
  """
     if mod_match:
         module = mod_match.group(1)
         text = (
             "{} **{}**:\n".format(
-                "İşte yardım için", HELPABLE[module].__MODULE__
+                "Here is the help for", HELPABLE[module].__MODULE__
             )
             + HELPABLE[module].__HELP__
         )
@@ -261,10 +256,10 @@ Tüm komutlarım ile kullanabilirsin: /
             [
                 [
                     InlineKeyboardButton(
-                        text="↪️ Geri", callback_data="help_back"
+                        text="↪️ Back", callback_data="help_back"
                     ),
                     InlineKeyboardButton(
-                        text="🔄 Kapat", callback_data="close"
+                        text="🔄 Close", callback_data="close"
                     ),
                 ],
             ]
