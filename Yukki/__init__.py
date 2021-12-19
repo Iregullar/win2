@@ -66,17 +66,17 @@ async def initiate_bot():
     )
     console.print(header)
     with console.status(
-        "[magenta] Winamp Müzik Botunu Açıyorum...",
+        "[magenta] Booting up The Yukki Music Bot...",
     ) as status:
-        console.print("┌ [red]İstemcilerin Önyüklenmesi...\n")
+        console.print("┌ [red]Booting Up The Clients...\n")
         await app.start()
         await userbot.start()
-        console.print("└ [green]İstemciler Başarıyla Yüklendi!")
-        initial = await startup_send_new("Winamp Müzik Botu Başlatılıyor...")
+        console.print("└ [green]Clients Booted Successfully!")
+        initial = await startup_send_new("Starting Yukki Music Bot...")
         await asyncio.sleep(0.5)
-        all_over = await startup_send_new("Gerekli Dizinler Kontrol Ediliyor...")
+        all_over = await startup_send_new("Checking Required Directories...")
         console.print(
-            "\n┌ [red]Gerekli Dizinlerin Varlığı Kontrol Ediliyor..."
+            "\n┌ [red]Checking the existence of Required Directories..."
         )
         if "raw_files" not in listdir():
             mkdir("raw_files")
@@ -86,10 +86,10 @@ async def initiate_bot():
             mkdir("cache")
         if "search" not in listdir():
             mkdir("search")
-        console.print("└ [green]Dizinler Güncellendi!")
+        console.print("└ [green]Directories Updated!")
         await asyncio.sleep(0.9)
-        ___ = await startup_edit_last(all_over, "Gerekli Verilerin Yenilenmesi...")
-        console.print("\n┌ [red]Yenileme Gereksinimleri...")
+        ___ = await startup_edit_last(all_over, "Refurbishing Necessary Data...")
+        console.print("\n┌ [red]Refurbishing Necessities...")
         getme = await app.get_me()
         getme1 = await userbot.get_me()
         BOT_ID = getme.id
@@ -106,10 +106,10 @@ async def initiate_bot():
         )
         ASSUSERNAME = getme1.username
         ASSMENTION = getme1.mention
-        console.print("└ [green]Yenilenme Başarılı")
+        console.print("└ [green]Refurbished Successfully!")
         await asyncio.sleep(0.9)
-        ____ok = await startup_edit_last(___, "Yardımcı Kullanıcılar Yükleniyor...")
-        console.print("\n┌ [red]Yardımcı Kullanıcılar Yükleniyor...")
+        ____ok = await startup_edit_last(___, "Loading Sudo Users...")
+        console.print("\n┌ [red]Loading Sudo Users...")
         sudoersdb = db.sudoers
         sudoers = await sudoersdb.find_one({"sudo": "sudo"})
         sudoers = [] if not sudoers else sudoers["sudoers"]
@@ -121,7 +121,7 @@ async def initiate_bot():
                 )
         SUDOERS = (SUDOERS + sudoers + OWNER_ID) if sudoers else SUDOERS
         await asyncio.sleep(1)
-        console.print("└ [green]Yardımcı Kullanıcılar Başarıyla Yüklendi!\n")
+        console.print("└ [green]Loaded Sudo Users Successfully!\n")
         await startup_delete_last(____ok)
         await startup_delete_last(initial)
 
