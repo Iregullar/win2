@@ -182,13 +182,16 @@ async def start_command(_, message):
                 published = result["publishedTime"]
             searched_text = f"""
 🔍__**Video Parça Bilgileri**__
+
 ❇️**Başlık:** {title}
+
 ⏳**Süreli:** {duration} Dakika
 👀**Görünümler:** `{views}`
 ⏰**Yayın Saati:** {published}
 🎥**Kanal Adı:** {channel}
 📎**Kanal Linki:** [Visit From Here]({channellink})
 🔗**Video Linki:** [Link]({link})
+
 ⚡️ __Arama {BOT_NAME} Tarafından Desteklenmektedir__"""
             key = InlineKeyboardMarkup(
                 [
