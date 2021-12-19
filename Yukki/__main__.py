@@ -125,7 +125,7 @@ home_text_pm = f"""⚡ Merhaba 🖤 [ ](https://www.burn-soft.ru/wp-content/uplo
 
 💡 Bazı kullanışlı özelliklere sahip Telegram Sesli Sohbet Sesiyim.
 
-⚡ **Geliştiricim <3  [Pratheek](http://t.me/OrmanCocuklariylaMucadele)**
+⚡ **Geliştiricim <3  [ɨʀʀɛɢʊʟǟʀ](http://t.me/OrmanCocuklariylaMucadele)**
 
 💭 Tüm komutlarımı ile kullanılabilirsin: / """
 
