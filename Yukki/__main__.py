@@ -251,7 +251,9 @@ async def help_button(client, query):
     back_match = re.match(r"help_back", query.data)
     create_match = re.match(r"help_create", query.data)
     top_text = f"""⚡️ Merhaba {query.from_user.first_name},
+    
 Daha fazla bilgi için düğmelere tıklayın.
+
 Tüm komutlarım ile kullanabilirsin: /
  """
     if mod_match:
