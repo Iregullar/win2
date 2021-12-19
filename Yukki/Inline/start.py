@@ -22,7 +22,7 @@ def setting_markup2():
             InlineKeyboardButton(text="✖️ Kapat", callback_data="close"),
         ],
     ]
-    return f"🔧  **{MUSIC_BOT_NAME} Ayarlar**", buttons
+    return f"🔧  **{MUSIC_BOT_NAME} Ayarlarr**", buttons
 
 
     
