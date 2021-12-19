@@ -225,7 +225,9 @@ async def help_parser(name, keyboard=None):
         keyboard = InlineKeyboardMarkup(paginate_modules(0, HELPABLE, "help"))
     return (
         """⚡️ Merhaba {first_name}⚡️,
+        
 Daha fazla bilgi için düğmelere tıklayın.
+
 Tüm komutlarım ile kullanabilirsin: /
 """.format(
             first_name=name
