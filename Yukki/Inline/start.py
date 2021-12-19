@@ -4,7 +4,6 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
 
 from Yukki import BOT_USERNAME
 
-
 def setting_markup2():
     buttons = [
         [
